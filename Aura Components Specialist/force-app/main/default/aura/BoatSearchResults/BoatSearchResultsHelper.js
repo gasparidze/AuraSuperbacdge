@@ -1,11 +1,9 @@
 ({
     onSearch : function(component, event) {
-        console.log("hello from results!!!");
+    let boatName = component.get("v.boatName");
         let action = component.get("c.getBoats");
-        let boatTypeId = component.get("v.boatTypeId");
-        console.log("selectedType=" + boatTypeId);
         action.setParams({
-            "boatTypeId": boatTypeId
+            "boatName": boatName
         });
         action.setCallback(this, function(response) {
         let state = response.getState();

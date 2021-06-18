@@ -1,31 +1,25 @@
 ({
-    init: function (component, event, helper) {
-        helper.loadTypes(component);
-        //var showNewButton=$A.get("e.force:createRecord");
+    doInit : function(component, event, helper) {
         if($A.get("e.force:createRecord")){
-            component.set("v.showNewButton", true);
+            component.set("v.showNewButton",true);
         }
     },
-    handleSelect: function(component, event, helper){
-        //получаю value выбранной опции
-        component.set("v.boatTypeId", event.getSource().get("v.value"));
-    },
     newBoatRecord: function(component, event, helper){
-        let boatTypeId = component.get("v.boatTypeId");
+        let boatName = component.get("v.boatName");
         var createBoatEvent = $A.get("e.force:createRecord");
         createBoatEvent.setParams({
             "entityApiName": "Boat__c",
             "defaultFieldValues": {
-                'BoatType__c' : boatTypeId
+                'Name' : boatName
             }
         });
         createBoatEvent.fire();
     },
     onFormSubmit: function(component, event, helper){
-        let boatTypeId = component.get("v.boatTypeId");
+        let boatName = component.get("v.boatName");
         let createEvent = component.getEvent("formsubmit");
-        console.log("selectedType in formHelper" + boatTypeId);
-        createEvent.setParams({ "formData" : boatTypeId });
+        createEvent.setParams({ "boatName" : boatName });
         createEvent.fire();
+        console.log("in search form, event is fired  " + boatName);
     }
 });

@@ -1,13 +1,11 @@
 ({
     onFormSubmit : function(component, event, helper) {
-        console.log("helloWorld");
-        let boatTypeId = event.getParam("formData");
-        console.log("boatTypeId in boat search= "  + boatTypeId);
-        component.set("v.boatTypeId", boatTypeId);
+        let boatName = event.getParam("boatName");
+        component.set("v.boatName", boatName);
+        console.log("in boatSearch  " + component.get("v.boatName"));
         var boatSearchResultsCmp = component.find("boatSearchResultsCmp");
         if(boatSearchResultsCmp){
-            console.log("in boarSearchResultsCMP")
-            boatSearchResultsCmp.search(boatTypeId);
+            boatSearchResultsCmp.search(boatName);
         }
     }
 })

@@ -6,7 +6,7 @@
         var params = event.getParam('arguments');
         if(params){
             var param1 = params.param1;
-            component.set("v.boatTypeId", param1);
+            component.set("v.boatName", param1);
             helper.onSearch(component);
         }
     },

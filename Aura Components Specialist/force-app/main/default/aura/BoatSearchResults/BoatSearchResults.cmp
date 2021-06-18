@@ -1,8 +1,9 @@
 <aura:component controller="BoatSearchResults">
     <aura:attribute name="boats" type="List"/>
     <aura:attribute name="boatTypeId" type="String"/>
+    <aura:attribute name="boatName" type="String"/>
     <aura:attribute name="selectedBoatId" type="String"/>
-    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="boatSelect" event="c:BoatSelect"
     action="{!c.onBoatSelect}"/>
            
