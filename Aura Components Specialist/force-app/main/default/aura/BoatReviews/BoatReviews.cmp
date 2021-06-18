@@ -1,0 +1,38 @@
+<aura:component controller="BoatReviews" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="boat" type="Boat__c"/>
+    <aura:attribute name="boatReviews" type="BoatReview__c[]" access="private"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.boat}" action="{!c.doInit}"/>
+    <aura:method name="refresh" action="{!c.doInit}" access="public">
+    </aura:method>
+    
+    <aura:if isTrue="{!v.boatReviews.length > 0}">
+        <ui:scrollerWrapper class="slds-feed">
+            <ul class="slds-feed__list">
+                <aura:iteration items="{!v.boatReviews}" var="boatReview">
+                    <li class="slds-post__header slds-media">
+                        <img src="{!boatReview.CreatedBy.SmallPhotoUrl}"/>
+                        {!boatReview.Name}
+                    </li>
+                    <li class="slds-feed__item">
+                        {!boatReview.CreatedBy.CompanyName}
+                    </li>>
+
+                    <li class="slds-media__figure">
+                        <a class="slds-avatar slds-avatar_circle slds-avatar_large" title="{!boatReview.CreatedBy.Name}"
+                            data-userid="{!boatReview.CreatedBy.Id}" 
+                            onclick="{!c.onUserInfoClick}">{!boatReview.CreatedBy.Name}</a>
+                    </li>
+                    <li class="slds-feed__item">
+                        <c:FiveStarRating value="{!boatReview.Rating__c}" readonly="true"/>
+                    </li>>
+                </aura:iteration>
+            </ul>
+        </ui:scrollerWrapper>
+        <aura:set attribute="else">
+            <lightning:layoutItem class="slds-align_absolute-center">
+                <div>No reviews available</div>
+            </lightning:layoutItem>
+        </aura:set>
+    </aura:if>
+</aura:component>	
