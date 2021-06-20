@@ -1,28 +1,35 @@
 <aura:component controller="BoatSearchResults">
+    <!--коллекция извлеченных записей лодок-->
     <aura:attribute name="boats" type="List"/>
+    <!--Id лодки-->
     <aura:attribute name="boatTypeId" type="String"/>
+    <!--Название лодки-->
     <aura:attribute name="boatName" type="String"/>
-    <aura:attribute name="selectedBoatId" type="String"/>
+    <!--Флаг, проверяющий, нажата ли кнопка Search или нет-->
+    <aura:attribute name="isSearch" type="Boolean"/>
+    <!--Коллекция столбцов, использующаяся для вывода таблицы-->
+    <aura:attribute name="columns" type="List"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:handler name="boatSelect" event="c:BoatSelect"
-    action="{!c.onBoatSelect}"/>
-           
+    <!--Event, передающий данные для отображения карты-->
+    <aura:registerEvent name="PlotMapMarker" type="c:PlotMapMarker"/>
+    <!--Event, передающий данные записи в компоненту с детальным описанием-->
+    <aura:registerEvent name="BoatSelected" type="c:BoatSelected"/>
+    <!--Event, передающий форме, пуста ли коллекция или нет-->
+    <aura:registerEvent name="IsEmpty" type="c:IsEmpty"/>
+    <!--Метод, использующийся для запроса в БД по названию лодки-->
     <aura:method name="search" action="{!c.doSearch}"> 
         <aura:attribute name="param1" type="String"/> 
     </aura:method>
     <lightning:layout multipleRows="true">
-
-            <aura:if isTrue="{!v.boats.length > 0}">
-                <aura:iteration items="{!v.boats}" var="boat">
-                    <lightning:layoutItem size="3" flexibility="grow" class="slds-m-around_small">
-                        <c:BoatTile boat="{!boat}" selected="{!boat.Id == v.selectedBoatId ? true : false}"/>
-                    </lightning:layoutItem>
-                </aura:iteration>
-                <aura:set attribute="else">
-                    <lightning:layoutItem class="slds-align_absolute-center">
-                        <div>No boats found</div>
-                    </lightning:layoutItem>
-                </aura:set>
+            <!--если нажата кнопка Search и коллекция не пуста, то выводится таблица-->
+            <aura:if isTrue="{! and(v.boats.length > 0,v.isSearch)}">
+                   <lightning:datatable
+                        columns="{!v.columns}"
+                        data="{!v.boats}"
+                        keyField="Id"
+                        maxRowSelection="1"
+                        hideCheckboxColumn="true"
+                        onrowaction="{!c.handleRowAction}"/>
             </aura:if>
     </lightning:layout>
 </aura:component>	

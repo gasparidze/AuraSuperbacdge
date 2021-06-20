@@ -31,8 +31,8 @@
                         <lightning:formattedNumber value="{!v.boat.Price__c}" style="currency" currencyCode="USD"/>
                     </div>
                     <div class="boatproperty">
-                        <span class="label">Description:</span>
-                        <lightning:formattedRichText value="{! v.boat.Description__c }" />
+                        <span class="label">Description: </span>
+                        <lightning:formattedRichText value="{!v.boat.Description__c}" />
                     </div>
                 </div>
             </lightning:layoutitem>

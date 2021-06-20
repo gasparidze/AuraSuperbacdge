@@ -1,11 +1,18 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId ">
+    <!--Название лодки-->
     <aura:attribute name="boatName" type="String"/>
+    <!--Флаг, проверяющий, нажат ли Search или нет-->
+    <aura:attribute name="isSearch" type="Boolean" default="false"/>
+    <!--Обработчик event'а, передающий нужные данные при нажатии на Search-->
     <aura:handler name="formsubmit" event="c:FormSubmit" action="{!c.onFormSubmit}"/>
     
     <lightning:card title="Find a Boat" class="find-boat">
+        <!--Компонента формы-->
         <c:BoatSearchForm/>
     </lightning:card>
     <lightning:card title="Matching Boats">
-        <c:BoatSearchResults aura:id="boatSearchResultsCmp" boatName="{!v.boatName}"/>
+        <!--Компонента результатов-->
+        <c:BoatSearchResults aura:id="boatSearchResultsCmp" boatName="{!v.boatName}" 
+            isSearch="{!v.isSearch}"/>
     </lightning:card>
 </aura:component>	

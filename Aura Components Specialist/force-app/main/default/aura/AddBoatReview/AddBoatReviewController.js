@@ -9,6 +9,7 @@
                 var toastEvent = $A.get("e.force:showToast");
                 if(toastEvent != undefined){
                     toastEvent.setParams({
+                        "type": "success",
                         "title": "Success!",
                         "message": "The record has been saved successfully."
                     });
