@@ -68,7 +68,7 @@
             "sObjectId": selectedBoat.Id,
             "lat": selectedBoat.Geolocation__Latitude__s,
             "long": selectedBoat.Geolocation__Longitude__s,
-            "label": selectedBoat.Name,
+            "label": selectedBoat.Name
         });
         createMapEvent.fire();
     }
