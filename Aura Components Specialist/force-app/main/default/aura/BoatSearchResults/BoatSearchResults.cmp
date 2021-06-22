@@ -24,7 +24,7 @@
             <!--если нажата кнопка Search и коллекция не пуста, то выводится таблица-->
             <aura:if isTrue="{! and(v.boats.length > 0,v.isSearch)}">
                    <lightning:datatable
-                        columns="{!v.columns}"
+                        columns="{!v.columns}" 
                         data="{!v.boats}"
                         keyField="Id"
                         maxRowSelection="1"

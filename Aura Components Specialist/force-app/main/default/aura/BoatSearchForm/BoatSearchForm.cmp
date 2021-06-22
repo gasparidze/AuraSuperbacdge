@@ -1,35 +1,36 @@
 <aura:component controller="GetBoatTypesController">
     <!--Название лодки-->
-    <aura:attribute name="boatName" type="String"/>
+    <aura:attribute name="boatName" type="String" />
     <!--Флаг, проверяющий, пуста ли коллекция полученных лодок -->
-    <aura:attribute name="isEmpty" type="Boolean" default="false"/>
+    <aura:attribute name="isEmpty" type="Boolean" default="false" />
     <!--Флаг, проверяющий, поддерживается ли создание записи на данной странице или нет-->
-    <aura:attribute name="showNewButton" type="Boolean" default="false"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="showNewButton" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <!--Обработчик event'а, который устанавливает флаг, isEmpty (пуста ли коллекция или нет)-->
-    <aura:handler event="c:IsEmpty" action="{!c.handleIsEmptyEvent}"/>
-    <aura:registerEvent name="formsubmit" type="c:FormSubmit"/>
+    <aura:handler event="c:IsEmpty" action="{!c.handleIsEmptyEvent}" />
+    <aura:registerEvent name="formsubmit" type="c:FormSubmit" />
     <!--Если коллекция пуста, то выводится соответствующее сообщение-->
     <aura:if isTrue="{!v.isEmpty}">
         <div class="slds-notify slds-notify_alert slds-alert_warning" role="alert">
             <span class="slds-assistive-text">warning</span>
-            <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed">
-                <lightning:icon iconName="utility:warning" size="xx-small"/>
+            <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small"
+                title="Description of icon when needed">
+                <lightning:icon iconName="utility:warning" size="xx-small" />
             </span>
-            <h2>Boat not found.
-            </h2>
-          </div>
+            <h2>Boat not found.</h2>
+        </div>
     </aura:if>
     <lightning:layout horizontalAlign="center">
-        <lightning:layoutItem >
-            <lightning:input value="{!v.boatName}" placeholder="type here..."/>
+        <lightning:layoutItem>
+            <lightning:input value="{!v.boatName}" placeholder="type here..." />
         </lightning:layoutItem>
-    <lightning:layoutItem padding="around-small">
-        <lightning:button label="Search" variant="brand" class="slds-m-left_x-small" onclick="{!c.onFormSubmit}"/>
+        <lightning:layoutItem padding="around-small">
+            <lightning:button label="Search" variant="brand" class="slds-m-left_x-small" onclick="{!c.onFormSubmit}" />
 
-        <aura:if isTrue="{!v.showNewButton}">
-            <lightning:button label="New" variant="neutral" class="slds-m-left_x-small" onclick="{!c.newBoatRecord}"/>
-        </aura:if>
-    </lightning:layoutItem>
+            <aura:if isTrue="{!v.showNewButton}">
+                <lightning:button label="New" variant="neutral" class="slds-m-left_x-small"
+                    onclick="{!c.newBoatRecord}" />
+            </aura:if>
+        </lightning:layoutItem>
     </lightning:layout>
-</aura:component>	
+</aura:component>

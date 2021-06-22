@@ -53,10 +53,10 @@
                                         <lightning:formattedRichText value="{!boatReview.Comment__c}" />
                                     </div>
                                     <div>
-                                        <c:FiveStarRating value="{!boatReview.Rating__c}" readonly="true"/>
+                                        <c:FiveStarRating value="{!boatReview.Rating__c}" readonly="true" />
                                     </div>
                                 </article>
-                       
+
                             </li>
                         </lightning:card>
                     </aura:iteration>
