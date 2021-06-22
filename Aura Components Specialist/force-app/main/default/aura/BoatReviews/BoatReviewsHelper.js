@@ -1,7 +1,7 @@
 ({
     onInit : function(component) {
         let action = component.get("c.getAll");
-        let boatId = component.get("v.boat.Id"); 
+        let boatId = component.get("v.boat").Id; 
         action.setParams({
             "boatId": boatId 
         });
